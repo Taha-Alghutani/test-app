@@ -1,3 +1,50 @@
+
+
+services:
+  web:
+    image: tahaalghutani/test-docker-second
+    environment:
+      - DEBUG=0
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,[::1],13.60.26.157
+      - POSTGRES_DB=django_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=example
+      - DB_HOST=postgres
+      - DB_PORT=5432
+    depends_on: 
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: django_db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: example
+
+  redis:
+    image: redis
+    restart: always
+
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80
+    depends_on:
+      - web
+
+volumes:
+  postgresql_data:
 networks:
   web:
     driver: bridge
