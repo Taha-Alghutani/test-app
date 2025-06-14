@@ -54,4 +54,7 @@ services:
 
 volumes:
   postgresql_data:
+networks:
+  web:
+    driver: bridge
 
