@@ -17,6 +17,8 @@ services:
     depends_on: 
       - postgres
       - redis
+    networks:
+      - web
 
   postgres:
     image: postgres
@@ -29,10 +31,14 @@ services:
       POSTGRES_DB: django_db
       POSTGRES_USER: root
       POSTGRES_PASSWORD: example
+    networks:
+      - web
 
   redis:
     image: redis
     restart: always
+    networks:
+      - web
 
   nginx:
     image: nginx:stable-alpine
@@ -44,6 +50,8 @@ services:
       - NGINX_HOST=foobar.com
       - NGINX_PORT=80
     depends_on:
+      - web
+    networks:
       - web
 
 volumes:

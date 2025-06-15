@@ -51,6 +51,8 @@ services:
       - NGINX_PORT=80
     depends_on:
       - web
+    networks:
+      - web
 
 volumes:
   postgresql_data:
