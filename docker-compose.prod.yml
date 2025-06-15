@@ -58,4 +58,4 @@ volumes:
   postgresql_data:
 networks:
   web:
-    driver: bridge
+    driver: overlay
