@@ -5,7 +5,7 @@ services:
     image: tahaalghutani/test-docker-second
     environment:
       - DEBUG=0
-      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,[::1],13.60.26.157
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,[::1],16.171.189.115
       - POSTGRES_DB=django_db
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=example
