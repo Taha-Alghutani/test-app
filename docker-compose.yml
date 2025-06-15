@@ -6,6 +6,16 @@ services:
     image: tahaalghutani/docker-test
     expose:
       - "8000"
+    deploy:
+      replicas: 6
+      
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
     environment:
       - DEBUG=0
       
