@@ -2,6 +2,9 @@
 
 services:
   web:
+    build:
+      context: .
+      
     image: tahaalghutani/test-docker-second
     environment:
       - DEBUG=0
