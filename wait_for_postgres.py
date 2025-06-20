@@ -4,9 +4,9 @@ import psycopg2
 from psycopg2 import OperationalError
 import os
 
-DB_NAME = os.environ.get("POSTGRES_DB", "django_db")
-DB_USER = os.environ.get("POSTGRES_USER", "root")
-DB_PASS = os.environ.get("POSTGRES_PASSWORD", "example")
+DB_NAME = os.environ.get("POSTGRES_DB", "taha_db")
+DB_USER = os.environ.get("POSTGRES_USER", "tahaalghutani")
+DB_PASS = os.environ.get("POSTGRES_PASSWORD", "t!@#$%^&*()1234567890")
 DB_HOST = os.environ.get("DB_HOST", "postgres")
 DB_PORT = os.environ.get("DB_PORT", 5432)
 

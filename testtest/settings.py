@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'testtest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_db',
-        'USER': 'root',
-        'PASSWORD': 'example',
+        'NAME': 'taha_db',
+        'USER': 'tahaalghutani',
+        'PASSWORD': 't!@#$%^&*()1234567890',
         'HOST': 'postgres',  # اسم الخدمة في docker-compose
         'PORT': '5432',
     }

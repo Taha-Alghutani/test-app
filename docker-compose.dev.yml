@@ -10,10 +10,10 @@ services:
     
     environment:
       - DEBUG=1
-      
-      - POSTGRES_DB=django_db
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=example
+
+      - POSTGRES_DB=taha_db
+      - POSTGRES_USER=tahaalghutani
+      - POSTGRES_PASSWORD=t!@#$%^&*()1234567890
       - DB_HOST=postgres
       - DB_PORT=5432
     depends_on: 
@@ -33,9 +33,9 @@ services:
     volumes:
       - postgresql_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: django_db
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: example
+      POSTGRES_DB: taha_db
+      POSTGRES_USER: tahaalghutani
+      POSTGRES_PASSWORD: t!@#$%^&*()1234567890
     networks:
       - web
 
