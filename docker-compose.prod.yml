@@ -2,64 +2,19 @@
 
 services:
   web:
-    build:
-      context: .
-      
     image: tahaalghutani/docker-test
-    environment:
-      - DEBUG=0
-      
-      - POSTGRES_DB=taha_db
-      - POSTGRES_USER=tahaalghutani
-      - POSTGRES_PASSWORD=t!@#$%^&*()1234567890
-      - DB_HOST=postgres
-      - DB_PORT=5432
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    env_file:
+      - .env.prod
     depends_on: 
       - postgres
       - redis
     networks:
-      - web
+      - mynet
 
-  postgres:
-    image: postgres
-    deploy:
-      restart_policy:
-        condition: on-failure
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgresql_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: taha_db
-      POSTGRES_USER: tahaalghutani
-      POSTGRES_PASSWORD: t!@#$%^&*()1234567890
-    networks:
-      - web
-
-  redis:
-    image: redis
-    deploy:
-      restart_policy:
-        condition: on-failure
-    networks:
-      - web
-
-  nginx:
-    image: nginx:stable-alpine
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - "80:80"
-    environment:
-      - NGINX_HOST=foobar.com
-      - NGINX_PORT=80
-    depends_on:
-      - web
-    networks:
-      - web
-
-volumes:
-  postgresql_data:
 networks:
-  web:
+  mynet:
     driver: overlay
