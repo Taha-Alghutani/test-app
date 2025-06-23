@@ -2,6 +2,9 @@
 
 services:
   web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     
     image: tahaalghutani/docker-test
     expose:
@@ -11,8 +14,8 @@ services:
     env_file:
       - .env
     environment:
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
+      - DB_HOST= postgres
+      - DB_PORT= 5432
     depends_on: 
       - postgres
       - redis
@@ -20,7 +23,7 @@ services:
       - mynet
 
   postgres:
-    image: postgres
+    image: postgres:latest
     restart: always
     ports:
       - "5432:5432"
@@ -34,7 +37,7 @@ services:
       - mynet
 
   redis:
-    image: redis
+    image: redis:latest
     restart: always
     networks:
       - mynet
@@ -42,7 +45,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - "80:80"
     environment:
