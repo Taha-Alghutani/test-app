@@ -3,10 +3,7 @@
 services:
   web:
     image: tahaalghutani/docker-test
-    deploy:
-      replicas: 3
-      restart_policy:
-        condition: on-failure
+    
     env_file:
       - .env.prod
     depends_on: 
