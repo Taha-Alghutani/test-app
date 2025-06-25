@@ -9,6 +9,13 @@ services:
     image: tahaalghutani/docker-test
     expose:
       - "8000"
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python create_superuser.py &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+
     
 
     env_file:
@@ -16,6 +23,9 @@ services:
     environment:
       - DB_HOST=postgres
       - DB_PORT=5432
+      - DJANGO_SUPERUSER_USERNAME=tahaalghutani
+      - DJANGO_SUPERUSER_EMAIL=alghutanitaha@gmail.com
+      - DJANGO_SUPERUSER_PASSWORD=Taha2003#
     depends_on: 
       - postgres
       - redis

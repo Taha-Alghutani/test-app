@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>قائمة المنتجات</title>
+</head>
+<body>
+    <h1>المنتجات</h1>
+    <ul>
+        {% for item in items %}
+            <li>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <p>السعر: ${{ item.price }}</p>
+            </li>
+        {% empty %}
+            <li>لا توجد منتجات.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
